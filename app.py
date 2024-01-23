@@ -1,9 +1,14 @@
 import os
+from dotenv import load_dotenv
 from embedchain import Pipeline as App
 
+# Load environment variables from .env file
+load_dotenv()
+
 # Create a bot instance
-os.environ["OPENAI_API_KEY"] = "YOUR API KEY"
-elon_bot = App()
+token = os.getenv("HUGGINGFACE_ACCESS_TOKEN")
+print('token',token)
+elon_bot = App.from_config("mistral.yaml")
 
 # Embed online resources
 elon_bot.add("https://en.wikipedia.org/wiki/Elon_Musk")
